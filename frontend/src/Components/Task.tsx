@@ -33,6 +33,7 @@ const Task = (props: TaskProps) => {
             });
           }}
           tagName="h2"
+          className="taskHeader"
         />
       </div>
       <ContentEditable
@@ -47,6 +48,7 @@ const Task = (props: TaskProps) => {
           });
         }}
         tagName="p"
+        className="taskDescription"
       />
     </div>
   );
