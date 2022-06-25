@@ -20,12 +20,7 @@ const Category = (props: CategoryProps) => {
         })}}
         >Add task</button>
       {props.tasks.map((task, index) => {
-        return (
-          <Task
-            key={index}
-            {...task}
-          />
-        );
+        return <Task key={index} {...task} />;
       })}
     </div>
   );
