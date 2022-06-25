@@ -186,6 +186,7 @@ body,
     border-radius: 6px;
     transition: all 0.2s;
     cursor: text;
+    overflow: hidden;
 }
 
 .taskHeader:hover {

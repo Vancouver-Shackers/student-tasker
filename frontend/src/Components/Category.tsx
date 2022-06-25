@@ -31,8 +31,8 @@ const Category = (props: CategoryProps) => {
           onClick={() => {
             props.addTask({
               // Maybe we just have default values, then make the task editable
-              name: "New Task",
-              description: "Task Description",
+              name: `Task ${props.tasks.length + 1}`,
+              description: "Description",
               color: `rgb(${Math.floor(Math.random() * 255)}, ${Math.floor(
                 Math.random() * 255
               )}, ${Math.floor(Math.random() * 255)})`,
