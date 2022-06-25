@@ -1,42 +1,14 @@
-import React, { useCallback, useEffect } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import { TaskProps } from "./Components/Task";
 // import Header from "./Components/Header";
 import Category, { CategoryProps } from "./Components/Category";
 
 const App = () => {
-  const [categories, setCategories] = React.useState<CategoryProps[]>([
-    {
-      name: "Category 1",
-      tasks: [
-        {
-          name: "Task 1",
-          description:
-            "Task Description that goes on and continues for many lines until there is enough content to clearly show what a task will look like",
-          color: "#FF6700",
-        },
-      ],
-      addTask: (task: TaskProps) => {
-        addTask("Category 1", task);
-      },
-    },
-    {
-      name: "Category 2",
-      tasks: [
-        {
-          name: "Task 1",
-          description: "Description 1",
-          color: "#FF6700",
-        },
-      ],
-      addTask: (task: TaskProps) => {
-        addTask("Category 2", task);
-      },
-    },
-  ]);
+  const [categories, setCategories] = useState<CategoryProps[]>([]);
 
   // need this to know when to update addTask's state
-  const [needsUpdate, setNeedsUpdate] = React.useState(false);
+  const [needsUpdate, setNeedsUpdate] = useState(false);
 
   useEffect(() => {
     if (needsUpdate) {
@@ -45,6 +17,15 @@ const App = () => {
         category.addTask = (task: TaskProps) => {
           addTask(category.name, task);
         };
+
+        category.handleChangeTask = (taskIndex: number, newTask: TaskProps) => {
+          handleChangeTask(category.name, taskIndex, newTask);
+        };
+        for (let i = 0; i < category.tasks.length; i++) {
+          category.tasks[i].onChangeTask = (task: TaskProps) => {
+            category.handleChangeTask(i, task);
+          };
+        }
       }
     }
   }, [needsUpdate]);
@@ -53,13 +34,13 @@ const App = () => {
     let newCategories = [...categories];
     const targetCategory = newCategories.find((c) => c.name === categoryName);
     if (targetCategory) {
-      targetCategory.tasks.push(task);
+      targetCategory.tasks.splice(0, 0, task);
       setCategories(newCategories);
     }
+    setNeedsUpdate(true);
   };
 
   const addCategory = (name: string) => {
-    setNeedsUpdate(true);
     setCategories([
       ...categories,
       {
@@ -68,8 +49,26 @@ const App = () => {
         addTask: (task: TaskProps) => {
           addTask(name, task);
         },
+        handleChangeTask: (taskIndex, newTask) => {
+          handleChangeTask(name, taskIndex, newTask);
+        },
       },
     ]);
+    setNeedsUpdate(true);
+  };
+
+  const handleChangeTask = (
+    categoryName: string,
+    taskIndex: number,
+    newTask: TaskProps
+  ) => {
+    let newCategories = [...categories];
+    const targetCategory = newCategories.find((c) => c.name === categoryName);
+    if (targetCategory) {
+      targetCategory.tasks[taskIndex] = newTask;
+      setCategories(newCategories);
+    }
+    setNeedsUpdate(true);
   };
 
   return (
