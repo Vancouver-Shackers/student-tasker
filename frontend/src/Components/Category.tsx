@@ -11,7 +11,8 @@ const Category = (props: CategoryProps) => {
   return (
     <div className="category">
       <h1 className="categoryHeader">{props.name}</h1>
-      <button
+        <div className="categoryContent">
+        <button
         className="button secondaryBG ascend"
         onClick={() => {
           props.addTask({
@@ -32,6 +33,7 @@ const Category = (props: CategoryProps) => {
       {props.tasks.map((task, index) => {
         return <Task key={index} {...task} />;
       })}
+        </div>
     </div>
   );
 };
