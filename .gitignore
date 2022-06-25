@@ -1,9 +1,9 @@
-/node_modules
-/.pnp
-.pnp.js
+node_modules
+.pnp
+pnp.js
 
-/coverage
-/build
+coverage
+build
 .DS_Store
 .env.local
 .env.development.local
