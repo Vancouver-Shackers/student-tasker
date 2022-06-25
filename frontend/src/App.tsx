@@ -11,28 +11,36 @@ const App = () => {
   const [needsUpdate, setNeedsUpdate] = useState(false);
 
   useEffect(() => {
+    // UPDATES FUNCTIONS FOR ALL COMPONENTS SO THAT THE STATE IS CURRENT
     if (needsUpdate) {
       setNeedsUpdate(false);
-      for (let category of categories) {
+      for (let i = 0; i < categories.length; i++) {
+        let category = categories[i];
+
         category.addTask = (task: TaskProps) => {
-          handleAddTask(category.name, task);
+          handleAddTask(i, task);
         };
 
         category.handleChangeTask = (taskIndex: number, newTask: TaskProps) => {
-          handleChangeTask(category.name, taskIndex, newTask);
+          handleChangeTask(i, taskIndex, newTask);
         };
-        for (let i = 0; i < category.tasks.length; i++) {
-          category.tasks[i].onChangeTask = (task: TaskProps) => {
-            category.handleChangeTask(i, task);
+
+        category.handleChangeCategory = (newCategory: string) => {
+          handleChangeCategory(i, newCategory);
+        };
+
+        for (let j = 0; j < category.tasks.length; j++) {
+          category.tasks[j].onChangeTask = (task: TaskProps) => {
+            category.handleChangeTask(j, task);
           };
         }
       }
     }
   }, [needsUpdate]);
 
-  const handleAddTask = (categoryName: string, task: TaskProps) => {
+  const handleAddTask = (categoryIndex: number, task: TaskProps) => {
     let newCategories = [...categories];
-    const targetCategory = newCategories.find((c) => c.name === categoryName);
+    const targetCategory = newCategories[categoryIndex];
     if (targetCategory) {
       targetCategory.tasks.splice(0, 0, task);
       setCategories(newCategories);
@@ -47,23 +55,36 @@ const App = () => {
         name: name,
         tasks: [],
         addTask: (task: TaskProps) => {
-          handleAddTask(name, task);
+          handleAddTask(categories.length - 1, task);
         },
         handleChangeTask: (taskIndex, newTask) => {
-          handleChangeTask(name, taskIndex, newTask);
+          handleChangeTask(categories.length - 1, taskIndex, newTask);
+        },
+        handleChangeCategory: (newName) => {
+          handleChangeCategory(categories.length - 1, newName);
         },
       },
     ]);
     setNeedsUpdate(true);
   };
 
+  const handleChangeCategory = (categoryIndex: number, newName: string) => {
+    let newCategories = [...categories];
+    let targetCategory = newCategories[categoryIndex];
+    if (targetCategory) {
+      targetCategory.name = newName;
+      setCategories(newCategories);
+    }
+    setNeedsUpdate(true);
+  };
+
   const handleChangeTask = (
-    categoryName: string,
+    categoryIndex: number,
     taskIndex: number,
     newTask: TaskProps
   ) => {
     let newCategories = [...categories];
-    const targetCategory = newCategories.find((c) => c.name === categoryName);
+    const targetCategory = newCategories[categoryIndex];
     if (targetCategory) {
       targetCategory.tasks[taskIndex] = newTask;
       setCategories(newCategories);
@@ -81,7 +102,6 @@ const App = () => {
       {/* All task-related content */}
       <main className="taskManagerParent">
         {/* Where the tasks resides */}
-
 
         {/* Task catagory */}
 
@@ -101,9 +121,8 @@ const App = () => {
         >
           Add category
         </button>
-
       </main>
-      </div>
+    </div>
   );
 };
 

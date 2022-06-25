@@ -12,8 +12,6 @@ export interface TaskProps {
 }
 
 const Task = (props: TaskProps) => {
-  const contentEditable = createRef<HTMLElement>();
-
   return (
     <div className="task ascend" tabIndex={0}>
       <div className="taskTopper">
@@ -24,7 +22,7 @@ const Task = (props: TaskProps) => {
           }}
         />
         <ContentEditable
-          innerRef={contentEditable}
+          innerRef={createRef()}
           html={props.name}
           disabled={false}
           onChange={(e) => {}}
@@ -38,7 +36,7 @@ const Task = (props: TaskProps) => {
         />
       </div>
       <ContentEditable
-        innerRef={contentEditable}
+        innerRef={createRef()}
         html={props.description}
         disabled={false}
         onChange={(e) => {}}
