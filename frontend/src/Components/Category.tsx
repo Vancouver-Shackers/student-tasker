@@ -3,7 +3,8 @@ import Task, { TaskProps } from "./Task";
 export interface CategoryProps {
   name: string;
   tasks: TaskProps[];
-  addTask: (task: TaskProps) => void;
+  handleAddTask: (task: TaskProps) => void;
+  handleChangeTask: (oldTask: TaskProps, newTask: TaskProps) => void;
 }
 
 const Category = (props: CategoryProps) => {
@@ -13,7 +14,7 @@ const Category = (props: CategoryProps) => {
         <div className="categoryContent">
         <button
         className="button secondaryBG ascend"
-        onClick={() => {props.addTask({
+        onClick={() => {props.handleAddTask({
           // Maybe we just have default values, then make the task editable
           name: "New Task",
           description: "Task Description",

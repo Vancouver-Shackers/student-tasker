@@ -4,20 +4,32 @@ export interface TaskProps {
   /**
    * The hex code of the task color
    */
-  color: string
+  color: string;
 }
 
 const Task = (props: TaskProps) => {
   return (
     <div className="task ascend" tabIndex={0}>
       <div className="taskTopper">
-        <div className={`taskColor`} style={{
-          backgroundColor: props.color
-        }}></div>
-        
-        <h2 className="taskHeader">{props.name}</h2>
+        <div
+          className={`taskColor`}
+          style={{
+            backgroundColor: props.color,
+          }}
+        ></div>
+
+        <h2 className="taskHeader" onChange={(e) => {}} contentEditable></h2>
       </div>
-      <p className="taskDescription">{props.description}</p>
+      <p
+        onBlur={(e) => {
+          console.log(e.currentTarget.textContent);
+        }}
+        defaultValue={props.description}
+        contentEditable
+        suppressContentEditableWarning={true}
+      >
+        {props.description}
+      </p>
     </div>
   );
 };
