@@ -14,6 +14,7 @@ const App = () => {
         color: "#FF6700"
       }],
       addTask: (task: TaskProps) => {
+        addTask("Category 1", task);
       }
     },
     {
@@ -24,17 +25,22 @@ const App = () => {
         color: "#FF6700"
       }],
       addTask: (task: TaskProps) => {
+        addTask("Category 2", task);
       }
     }
-  ]);
+  ])
+
+  const addCategory = (category: CategoryProps) => {
+    setCategories([...categories, category])
+  }
   
-  const addTask = (category: CategoryProps, task: TaskProps) => {
-    const newCategories = [...categories];w
-    const targetCategory = newCategories.find(c => c.name === category.name);
+  const addTask = (categoryName: string, task: TaskProps) => {
+    const newCategories = [...categories]
+    const targetCategory = newCategories.find(c => c.name === categoryName)
     if (targetCategory) {
-      targetCategory.tasks.push(task);
+      targetCategory.tasks.push(task)
+      setCategories(newCategories)
     }
-    setCategories(newCategories);
   }
 
   return (
