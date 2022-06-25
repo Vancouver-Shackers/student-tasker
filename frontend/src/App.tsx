@@ -109,7 +109,7 @@ const App = () => {
           <Category key={index} {...category} />
         ))}
         <button
-          className="button secondaryBG ascend"
+          className="button mainBG ascend"
           // TEMPORARY STYLING
           style={{
             width: "200px",
