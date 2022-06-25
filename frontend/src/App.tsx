@@ -53,7 +53,7 @@ const App = () => {
     let newCategories = [...categories];
     const targetCategory = newCategories.find((c) => c.name === categoryName);
     if (targetCategory) {
-      targetCategory.tasks.push(task);
+      targetCategory.tasks.splice(0, 0, task);
       setCategories(newCategories);
     }
   };
