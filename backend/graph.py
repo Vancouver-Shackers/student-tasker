@@ -33,39 +33,12 @@ class Graph:
         user_response = self.user_client.get(request_url)
         return user_response.json()
 
-    def get_inbox(self):
-        endpoint = '/me/mailFolders/inbox/messages'
-        # Only request specific properties
-        select = 'from,isRead,receivedDateTime,subject'
-        # Get at most 25 results
-        top = 25
+    def get_assignments(self):
+        endpoint = '/education/me/assignments'
+        
         # Sort by received time, newest first
         order_by = 'receivedDateTime DESC'
-        request_url = f'{endpoint}?$select={select}&$top={top}&$orderBy={order_by}'
+        request_url = f'{endpoint}?$orderBy={order_by}'
 
-        inbox_response = self.user_client.get(request_url)
-        return inbox_response.json()
-
-    def send_mail(self, subject: str, body: str, recipient: str):
-        request_body = {
-            'message': {
-                'subject': subject,
-                'body': {
-                    'contentType': 'text',
-                    'content': body
-                },
-                'toRecipients': [
-                    {
-                        'emailAddress': {
-                            'address': recipient
-                        }
-                    }
-                ]
-            }
-        }
-
-        request_url = '/me/sendmail'
-
-        self.user_client.post(request_url,
-                            data=json.dumps(request_body),
-                            headers={'Content-Type': 'application/json'})
+        assignment_response = self.user_client.get(request_url)
+        return assignment_response.json()
