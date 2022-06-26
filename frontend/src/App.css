@@ -1,7 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
 html,
 body,
-#root {}
+#root {
+    --primary: #333333;
+    --secondary: #424242;
+}
 
 #root::-webkit-scrollbar {
     display: none;
@@ -132,6 +135,17 @@ body,
     z-index: 1;
     background-color: #333333;
     padding: 8px 12px;
+    outline: none;
+    transition: all 0.2s;
+}
+
+.categoryHeader:hover {
+    background: var(--secondary);
+}
+
+.categoryHeader:focus {
+    background: var(--secondary);
+    box-shadow: rgba(0, 0, 0, 0.3) 0 8px 30px 0;
 }
 
 .categoryContent {
@@ -154,25 +168,54 @@ body,
 .taskTopper {
     background-color: #424242;
     display: flex;
-    align-items: center;
-    gap: 8px;
+    align-items: stretch;
     padding: 10px 0;
+    gap: 6px;
 }
 
 .taskColor {
-    width: 20px;
-    height: 20px;
-    border-radius: 100%;
+    width: 6px;
+    border-radius: 6px;
 }
 
 .taskHeader {
-    font-size: 18px;
+    font-size: 15px;
+    outline: none;
+    flex: 1;
+    padding: 6px;
+    border-radius: 6px;
+    transition: all 0.2s;
+    cursor: text;
+    overflow: hidden;
+}
+
+.taskHeader:hover {
+    background: var(--primary);
+}
+
+.taskHeader:focus {
+    background: var(--primary);
+    box-shadow: rgba(0, 0, 0, 0.3) 0 8px 30px 0;
 }
 
 .taskDescription {
-    font-size: 14px;
+    font-size: 12px;
     height: fit-content;
     overflow: hidden;
+    outline: none;
+    padding: 6px;
+    border-radius: 6px;
+    transition: all 0.2s;
+    cursor: text;
+}
+
+.taskDescription:hover {
+    background: var(--primary);
+}
+
+.taskDescription:focus {
+    background: var(--primary);
+    box-shadow: rgba(0, 0, 0, 0.3) 0 8px 30px 0;
 }
 
 .ascend {
