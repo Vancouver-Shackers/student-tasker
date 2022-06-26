@@ -3,6 +3,7 @@ import "./App.css";
 import { TaskProps } from "./Components/Task";
 // import Header from "./Components/Header";
 import Category, { CategoryProps } from "./Components/Category";
+import { DragDropContext } from "react-beautiful-dnd";
 
 const App = () => {
   const [categories, setCategories] = useState<CategoryProps[]>([]);
@@ -92,6 +93,19 @@ const App = () => {
     setNeedsUpdate(true);
   };
 
+  const handleOnDragEnd = (result: any, categoryIndex: number) => {
+    if (!result.destination) return;
+
+    const newCategories = [...categories];
+    const items = Array.from(newCategories[categoryIndex].tasks);
+    const [reorderedItem] = items.splice(result.source.index, 1);
+    items.splice(result.destination.index, 0, reorderedItem);
+    newCategories[categoryIndex].tasks = items;
+
+    setCategories(newCategories);
+    setNeedsUpdate(true);
+  };
+
   return (
     <div className="app">
       {/* Where the header will go
@@ -106,7 +120,12 @@ const App = () => {
         {/* Task catagory */}
 
         {categories.map((category, index) => (
-          <Category key={index} {...category} />
+          <DragDropContext
+            key={index}
+            onDragEnd={(result) => handleOnDragEnd(result, index)}
+          >
+            <Category {...category} />
+          </DragDropContext>
         ))}
         <button
           className="button mainBG ascend"

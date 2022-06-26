@@ -1,4 +1,5 @@
 import { createRef } from "react";
+import { Draggable, Droppable } from "react-beautiful-dnd";
 import ContentEditable from "react-contenteditable";
 import Task, { TaskProps } from "./Task";
 
@@ -44,9 +45,32 @@ const Category = (props: CategoryProps) => {
         >
           Add task
         </button>
-        {props.tasks.map((task, index) => {
-          return <Task key={index} {...task} />;
-        })}
+        <Droppable droppableId="category">
+          {(provided, snapshot) => (
+            <div ref={provided.innerRef}>
+              {props.tasks.map((task, index) => {
+                return (
+                  <Draggable
+                    key={index}
+                    draggableId={"task-" + index}
+                    index={index}
+                  >
+                    {(provided) => (
+                      <div
+                        ref={provided.innerRef}
+                        {...provided.draggableProps}
+                        {...provided.dragHandleProps}
+                      >
+                        <Task key={index} {...task} />
+                      </div>
+                    )}
+                  </Draggable>
+                );
+              })}
+              {provided.placeholder}
+            </div>
+          )}
+        </Droppable>
       </div>
     </div>
   );
