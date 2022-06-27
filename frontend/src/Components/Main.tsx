@@ -112,6 +112,7 @@ export const Main = () => {
 	}
 
 	return (
+		/* All task-related content */
 		<div className='taskManagerParent'>
 			{/* Where the task categories reside */}
 			<DragDropContext onDragEnd={handleOnDragEnd}>
