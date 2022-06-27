@@ -23,7 +23,6 @@ class Graph:
         # self.user_client = GraphClient(credential=self.device_code_credential, scopes=graph_scopes)
         self.user_client = GraphClient(credential=self.interative_browser_credential, scopes=graph_scopes)
 
-
     def get_assignments(self):
         endpoint = '/education/me/assignments'
         
@@ -31,6 +30,4 @@ class Graph:
         request_url = f'{endpoint}'
 
         assignment_response = self.user_client.get(request_url)
-        print(assignment_response)
-        print('test')
         return assignment_response.json()

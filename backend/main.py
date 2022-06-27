@@ -14,7 +14,6 @@ def init():
 def get_assignments(graph: Graph):
     return graph.get_assignments()
     
-    
 # def greet_user(graph: Graph):
 #     user = graph.get_user()
 #     print(user['id'])
