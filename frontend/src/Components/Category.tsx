@@ -9,6 +9,7 @@ export interface CategoryProps {
   addTask: (task: TaskProps) => void;
   handleChangeTask: (taskIndex: number, newTask: TaskProps) => void;
   handleChangeCategory: (newCategory: string) => void;
+  categoryIndex: number;
 }
 
 const Category = (props: CategoryProps) => {
@@ -45,17 +46,19 @@ const Category = (props: CategoryProps) => {
         >
           Add task
         </button>
-        <Droppable droppableId="category">
+        <Droppable droppableId={props.categoryIndex.toString()}>
           {(provided, snapshot) => (
-            <div ref={provided.innerRef}>
-              {props.tasks.map((task, index) => {
+            <div ref={provided.innerRef} {...provided.droppableProps}>
+              {props.tasks?.map((task, index) => {
                 return (
                   <Draggable
                     key={index}
-                    draggableId={"task-" + index}
+                    draggableId={
+                      index.toString() + "-cat" + props.categoryIndex.toString()
+                    }
                     index={index}
                   >
-                    {(provided) => (
+                    {(provided, snapshot) => (
                       <div
                         ref={provided.innerRef}
                         {...provided.draggableProps}

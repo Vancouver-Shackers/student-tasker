@@ -8,7 +8,6 @@ import { DragDropContext } from "react-beautiful-dnd";
 const App = () => {
   const [categories, setCategories] = useState<CategoryProps[]>([]);
 
-  // need this to know when to update addTask's state
   const [needsUpdate, setNeedsUpdate] = useState(false);
 
   useEffect(() => {
@@ -64,6 +63,7 @@ const App = () => {
         handleChangeCategory: (newName) => {
           handleChangeCategory(categories.length - 1, newName);
         },
+        categoryIndex: categories.length,
       },
     ]);
     setNeedsUpdate(true);
@@ -93,14 +93,21 @@ const App = () => {
     setNeedsUpdate(true);
   };
 
-  const handleOnDragEnd = (result: any, categoryIndex: number) => {
-    if (!result.destination) return;
+  const handleOnDragEnd = (result: any) => {
+    if (result.reason !== "DROP" || !result.destination) {
+      return;
+    }
 
     const newCategories = [...categories];
-    const items = Array.from(newCategories[categoryIndex].tasks);
-    const [reorderedItem] = items.splice(result.source.index, 1);
-    items.splice(result.destination.index, 0, reorderedItem);
-    newCategories[categoryIndex].tasks = items;
+    let from = result.source.droppableId;
+    let to = result.destination.droppableId;
+    let fromIndex = result.source.index;
+    let toIndex = result.destination.index;
+
+    newCategories[from].tasks = newCategories[from].tasks || [];
+    newCategories[to].tasks = newCategories[to].tasks || [];
+    const [removed] = newCategories[from].tasks.splice(fromIndex, 1);
+    newCategories[to].tasks.splice(toIndex, 0, removed);
 
     setCategories(newCategories);
     setNeedsUpdate(true);
@@ -115,18 +122,12 @@ const App = () => {
 
       {/* All task-related content */}
       <main className="taskManagerParent">
-        {/* Where the tasks resides */}
-
-        {/* Task catagory */}
-
-        {categories.map((category, index) => (
-          <DragDropContext
-            key={index}
-            onDragEnd={(result) => handleOnDragEnd(result, index)}
-          >
-            <Category {...category} />
-          </DragDropContext>
-        ))}
+        {/* Where the task categories reside */}
+        <DragDropContext onDragEnd={handleOnDragEnd}>
+          {categories.map((category, index) => (
+            <Category key={index} {...category} />
+          ))}
+        </DragDropContext>
         <button
           className="button mainBG ascend"
           // TEMPORARY STYLING
