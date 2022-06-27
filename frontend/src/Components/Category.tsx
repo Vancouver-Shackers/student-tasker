@@ -16,7 +16,7 @@ const Category = (props: CategoryProps) => {
   return (
     <div className="category">
       <ContentEditable
-        className="categoryHeader"
+        className="categoryHeader headerMid"
         innerRef={createRef()}
         html={props.name}
         disabled={false}
