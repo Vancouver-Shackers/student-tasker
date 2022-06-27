@@ -3,11 +3,11 @@ import "./App.css";
 import { TaskProps } from "./Components/Task";
 // import Header from "./Components/Header";
 import Category, { CategoryProps } from "./Components/Category";
+import { DragDropContext } from "react-beautiful-dnd";
 
 const App = () => {
   const [categories, setCategories] = useState<CategoryProps[]>([]);
 
-  // need this to know when to update addTask's state
   const [needsUpdate, setNeedsUpdate] = useState(false);
 
   useEffect(() => {
@@ -63,6 +63,7 @@ const App = () => {
         handleChangeCategory: (newName) => {
           handleChangeCategory(categories.length - 1, newName);
         },
+        categoryIndex: categories.length,
       },
     ]);
     setNeedsUpdate(true);
@@ -92,6 +93,26 @@ const App = () => {
     setNeedsUpdate(true);
   };
 
+  const handleOnDragEnd = (result: any) => {
+    if (result.reason !== "DROP" || !result.destination) {
+      return;
+    }
+
+    const newCategories = [...categories];
+    let from = result.source.droppableId;
+    let to = result.destination.droppableId;
+    let fromIndex = result.source.index;
+    let toIndex = result.destination.index;
+
+    newCategories[from].tasks = newCategories[from].tasks || [];
+    newCategories[to].tasks = newCategories[to].tasks || [];
+    const [removed] = newCategories[from].tasks.splice(fromIndex, 1);
+    newCategories[to].tasks.splice(toIndex, 0, removed);
+
+    setCategories(newCategories);
+    setNeedsUpdate(true);
+  };
+
   return (
     <div className="app">
       {/* Where the header will go
@@ -101,13 +122,12 @@ const App = () => {
 
       {/* All task-related content */}
       <main className="taskManagerParent">
-        {/* Where the tasks resides */}
-
-        {/* Task catagory */}
-
-        {categories.map((category, index) => (
-          <Category key={index} {...category} />
-        ))}
+        {/* Where the task categories reside */}
+        <DragDropContext onDragEnd={handleOnDragEnd}>
+          {categories.map((category, index) => (
+            <Category key={index} {...category} />
+          ))}
+        </DragDropContext>
         <button
           className="button mainBG ascend"
           // TEMPORARY STYLING

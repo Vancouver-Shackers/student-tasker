@@ -25,7 +25,7 @@ const Task = (props: TaskProps) => {
           innerRef={createRef()}
           html={props.name}
           disabled={false}
-          onChange={(e) => {}}
+          onChange={() => {}}
           onBlur={(e) => {
             props.onChangeTask({
               ...props,
@@ -37,6 +37,7 @@ const Task = (props: TaskProps) => {
         />
       </div>
       <ContentEditable
+        placeholder="Description"
         innerRef={createRef()}
         html={props.description}
         disabled={false}
