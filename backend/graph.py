@@ -1,11 +1,12 @@
 import json
 from configparser import SectionProxy
-from azure.identity import DeviceCodeCredential, ClientSecretCredential
+from azure.identity import DeviceCodeCredential, ClientSecretCredential, InteractiveBrowserCredential
 from msgraph.core import GraphClient
 
 class Graph:
     settings: SectionProxy
-    device_code_credential: DeviceCodeCredential
+    interative_browser_credential: InteractiveBrowserCredential
+    # device_code_credential: DeviceCodeCredential
     user_client: GraphClient
     client_credential: ClientSecretCredential
     app_client: GraphClient
@@ -16,29 +17,20 @@ class Graph:
         tenant_id = self.settings['authTenant']
         graph_scopes = self.settings['graphUserScopes'].split(' ')
 
-        self.device_code_credential = DeviceCodeCredential(client_id, tenant_id = tenant_id)
-        self.user_client = GraphClient(credential=self.device_code_credential, scopes=graph_scopes)
+        # self.device_code_credential = DeviceCodeCredential(client_id, tenant_id = tenant_id)
+        self.interative_browser_credential = InteractiveBrowserCredential()
 
-    def get_user_token(self):
-        graph_scopes = self.settings['graphUserScopes']
-        access_token = self.device_code_credential.get_token(graph_scopes)
-        return access_token.token
+        # self.user_client = GraphClient(credential=self.device_code_credential, scopes=graph_scopes)
+        self.user_client = GraphClient(credential=self.interative_browser_credential, scopes=graph_scopes)
 
-    def get_user(self):
-        endpoint = '/me'
-        # Only request specific properties
-        select = 'displayName,mail,userPrincipalName'
-        request_url = f'{endpoint}?$select={select}'
-
-        user_response = self.user_client.get(request_url)
-        return user_response.json()
 
     def get_assignments(self):
         endpoint = '/education/me/assignments'
         
         # Sort by received time, newest first
-        order_by = 'receivedDateTime DESC'
-        request_url = f'{endpoint}?$orderBy={order_by}'
+        request_url = f'{endpoint}'
 
         assignment_response = self.user_client.get(request_url)
+        print(assignment_response)
+        print('test')
         return assignment_response.json()
