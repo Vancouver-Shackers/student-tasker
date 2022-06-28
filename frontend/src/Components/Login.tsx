@@ -13,7 +13,7 @@ export const Login = (props: {
   return (
     <div className="loginParent">
       <div className="loginChild mainBG">
-        <h2 className="headerMid centerText">Choose a login option</h2>
+		  <img src="studentTasker2.png" alt="" className="loginIcon" />
         <button
           className="button ascend secondaryBG"
           onClick={() => fetchData()}

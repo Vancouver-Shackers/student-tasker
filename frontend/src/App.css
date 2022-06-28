@@ -313,6 +313,11 @@ body,
     opacity: 0.7;
 }
 
+.loginIcon {
+    width: 50%;
+    margin: 15px auto;
+}
+
 
 /* [contenteditable='true']:empty:before {
 	content: attr(placeholder);
