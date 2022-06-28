@@ -1,270 +1,272 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
 html,
 body,
 #root {
-	--primary: #333333;
-	--secondary: #424242;
-	color: white;
+  --primary: #333333;
+  --secondary: #424242;
+  color: white;
 }
 
 #root::-webkit-scrollbar {
-	display: none;
-	scrollbar-width: none;
+  display: none;
+  scrollbar-width: none;
 }
 
 .app {
-	/* background-color: white; */
+  /* background-color: white; */
 }
 
 @keyframes animateGradient {
-	0% {
-	}
-	50% {
-		background-position-x: 100%;
-	}
-	100% {
-		background-position-x: 0%;
-	}
+  0% {
+  }
+  50% {
+    background-position-x: 100%;
+  }
+  100% {
+    background-position-x: 0%;
+  }
 }
 
 @font-face {
-	font-family: 'Material Icons';
-	font-style: normal;
-	font-weight: 300;
-	src: local('Material Icons'), local('MaterialIcons-Regular'),
-		url(https://example.com/MaterialIcons-Regular.woff2) format('woff2'),
-		url(https://example.com/MaterialIcons-Regular.woff) format('woff'),
-		url(https://example.com/MaterialIcons-Regular.ttf) format('truetype');
+  font-family: "Material Icons";
+  font-style: normal;
+  font-weight: 300;
+  src: local("Material Icons"), local("MaterialIcons-Regular"),
+    url(https://example.com/MaterialIcons-Regular.woff2) format("woff2"),
+    url(https://example.com/MaterialIcons-Regular.woff) format("woff"),
+    url(https://example.com/MaterialIcons-Regular.ttf) format("truetype");
 }
 
 * {
-	margin: 0;
-	font-family: 'Poppins', 'sans-serif';
+  margin: 0;
+  font-family: "Poppins", "sans-serif";
 }
 
 *::-webkit-scrollbar {
-	width: 14px;
-	background: #424242;
-	height: 0;
+  width: 14px;
+  background: #424242;
+  height: 0;
 }
 
 *::-webkit-scrollbar-thumb {
-	background: #4d4d4d;
-	width: 100%;
+  background: #4d4d4d;
+  width: 100%;
 }
 
 *::-webkit-scrollbar-thumb:hover {
-	background: rgb(112, 112, 112);
+  background: rgb(112, 112, 112);
 }
 
 .mainBG {
-	background-color: #333333;
+  background-color: #333333;
 }
 
 .secondaryBG {
-	background-color: #424242;
+  background-color: #424242;
 }
 
 .button {
-	color: white;
-	border: none;
-	padding: 8px 0;
-	width: 100%;
-	cursor: pointer;
-	border-radius: 6px;
-	transition: all 0.3s;
-	user-select: none;
-	font-weight: 500;
-	font-size: 16px;
+  color: white;
+  border: none;
+  padding: 8px 0;
+  width: 100%;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all 0.3s;
+  user-select: none;
+  font-weight: 500;
+  font-size: 16px;
 }
 
 .input {
-	color: white;
-	border: none;
-	padding: 8px 0;
-	width: 100%;
-	cursor: pointer;
-	border-radius: 6px;
-	transition: all 0.3s;
-	user-select: none;
-	font-weight: 500;
-	font-size: 16px;
+  color: white;
+  border: none;
+  padding: 8px 0;
+  width: 100%;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all 0.3s;
+  user-select: none;
+  font-weight: 500;
+  font-size: 16px;
 }
 
 .background {
-	background: linear-gradient(135deg, #007bec 0%, #ad00ea 100%);
-	animation: animateGradient 5s infinite;
-	background-size: 200% 100%;
-	position: fixed;
-	top: 0;
-	left: 0;
-	bottom: 0;
-	right: 0;
+  background: linear-gradient(135deg, #007bec 0%, #ad00ea 100%);
+  animation: animateGradient 5s infinite;
+  background-size: 200% 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
 }
 
 .taskManagerParent {
-	position: absolute;
-	top: 0;
-	bottom: 0;
-	left: 0;
-	padding: 30px;
-	display: flex;
-	align-items: flex-start;
-	gap: 10px;
-	min-width: 100%;
-	max-height: 100%;
-	overflow-x: scroll;
-	overflow-y: hidden;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  padding: 30px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  min-width: 100%;
+  max-height: 100%;
+  overflow-x: scroll;
+  overflow-y: hidden;
 }
 
 .taskManagerParent::-webkit-scrollbar {
-	display: none;
+  display: none;
 }
 
 .category {
-	background-color: #333333;
-	box-shadow: rgba(0, 0, 0, 0.4) 0 10px 80px 0;
-	border-radius: 6px;
-	color: white;
-	max-height: 100%;
-	overflow-y: auto;
-	position: relative;
-	width: 250px;
+  background-color: #333333;
+  box-shadow: rgba(0, 0, 0, 0.4) 0 10px 80px 0;
+  border-radius: 6px;
+  color: white;
+  max-height: 100%;
+  overflow-y: auto;
+  position: relative;
+  width: 250px;
+
+  margin-left: 10px;
 }
 
 .categoryHeader {
-	text-align: center;
-	position: sticky;
-	top: 0;
-	z-index: 1;
-	background-color: #333333;
-	padding: 8px 12px;
-	outline: none;
-	transition: all 0.2s;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background-color: #333333;
+  padding: 8px 12px;
+  outline: none;
+  transition: all 0.2s;
 }
 
 .categoryHeader:hover {
-	background: var(--secondary);
+  background: var(--secondary);
 }
 
 .categoryHeader:focus {
-	background: var(--secondary);
-	box-shadow: rgba(0, 0, 0, 0.3) 0 8px 30px 0;
+  background: var(--secondary);
+  box-shadow: rgba(0, 0, 0, 0.3) 0 8px 30px 0;
 }
 
 .categoryContent {
-	display: flex;
-	flex-direction: column;
-	padding: 10px;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
 }
 
 .task {
-	display: flex;
-	flex-direction: column;
-	background: #424242;
-	padding: 10px;
-	border-radius: 6px;
-	cursor: pointer;
-	user-select: none;
-	margin: 10px 0;
+  display: flex;
+  flex-direction: column;
+  background: #424242;
+  padding: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  user-select: none;
+  margin: 10px 0;
 }
 
 .taskTopper {
-	background-color: #424242;
-	display: flex;
-	align-items: stretch;
-	padding: 10px 0;
-	gap: 6px;
+  background-color: #424242;
+  display: flex;
+  align-items: stretch;
+  padding: 10px 0;
+  gap: 6px;
 }
 
 .taskColor {
-	width: 6px;
-	border-radius: 6px;
+  width: 6px;
+  border-radius: 6px;
 }
 
 .taskHeader {
-	font-size: 15px;
-	outline: none;
-	flex: 1;
-	padding: 6px;
-	border-radius: 6px;
-	transition: all 0.2s;
-	cursor: text;
-	overflow: hidden;
+  font-size: 15px;
+  outline: none;
+  flex: 1;
+  padding: 6px;
+  border-radius: 6px;
+  transition: all 0.2s;
+  cursor: text;
+  overflow: hidden;
 }
 
 .taskHeader:hover {
-	background: var(--primary);
+  background: var(--primary);
 }
 
 .taskHeader:focus {
-	background: var(--primary);
-	box-shadow: rgba(0, 0, 0, 0.3) 0 8px 30px 0;
+  background: var(--primary);
+  box-shadow: rgba(0, 0, 0, 0.3) 0 8px 30px 0;
 }
 
 .taskDescription {
-	font-size: 12px;
-	height: fit-content;
-	overflow: hidden;
-	outline: none;
-	padding: 6px;
-	border-radius: 6px;
-	transition: all 0.2s;
-	cursor: text;
+  font-size: 12px;
+  height: fit-content;
+  overflow: hidden;
+  outline: none;
+  padding: 6px;
+  border-radius: 6px;
+  transition: all 0.2s;
+  cursor: text;
 }
 
 .taskDescription:hover {
-	background: var(--primary);
+  background: var(--primary);
 }
 
 .taskDescription:focus {
-	background: var(--primary);
-	box-shadow: rgba(0, 0, 0, 0.3) 0 8px 30px 0;
+  background: var(--primary);
+  box-shadow: rgba(0, 0, 0, 0.3) 0 8px 30px 0;
 }
 
 .loginParent {
-	width: 100%;
-	height: 100%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	position: absolute;
-	z-index: 1;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  z-index: 1;
 }
 
 .loginChild {
-	width: 500px;
-	display: flex;
-	flex-direction: column;
-	gap: 10px;
-	padding: 10px;
-	border-radius: 6px;
-	box-shadow: rgba(0, 0, 0, 0.3) 0 8px 30px 0;
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  border-radius: 6px;
+  box-shadow: rgba(0, 0, 0, 0.3) 0 8px 30px 0;
 }
 
 .headerMid {
-	font-size: 22px;
-	padding: 10px;
+  font-size: 22px;
+  padding: 10px;
 }
 
 .centerText {
-	text-align: center;
+  text-align: center;
 }
 
 .ascend {
-	transition: all 0.2s;
-	position: relative;
-	top: 0;
+  transition: all 0.2s;
+  position: relative;
+  top: 0;
 }
 
 .ascend:hover {
-	box-shadow: rgba(0, 0, 0, 0.3) 0 8px 30px 0;
-	top: -3px;
+  box-shadow: rgba(0, 0, 0, 0.3) 0 8px 30px 0;
+  top: -3px;
 }
 
 .ascend:focus {
-	box-shadow: rgba(0, 0, 0, 0.3) 0 8px 30px 0;
-	top: -3px;
+  box-shadow: rgba(0, 0, 0, 0.3) 0 8px 30px 0;
+  top: -3px;
 }
 
 /* [contenteditable='true']:empty:before {
