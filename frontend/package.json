@@ -1,5 +1,5 @@
 {
-  "name": "frontend",
+  "name": "Student Tasker",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -19,6 +19,7 @@
     "@types/react": "^18.0.9",
     "@types/react-beautiful-dnd": "^13.1.2",
     "@types/react-dom": "^18.0.5",
+    "gh-pages": "^4.0.0",
     "typescript": "^4.7.4"
   },
   "scripts": {
@@ -28,17 +29,10 @@
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+    "extends": ["react-app", "react-app/jest"]
   },
   "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
+    "production": [">0.2%", "not dead", "not op_mini all"],
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",
