@@ -19,7 +19,6 @@ with app.app_context():
 
 @app.route('/getAssignments')
 def getAssignments():
-    # return 'Python Graph Tutorial\n'
     graph = init()
     assignments = get_assignments(graph)
     print(assignments)
