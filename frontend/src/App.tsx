@@ -11,9 +11,8 @@ const App = () => {
 		<div className='app'>
 			{/* Where the header will go
       <Header /> */}
-			<div className='background'>
-				{loggedIn ? <Main /> : <Login setLoggedIn={setLoggedIn} />}
-			</div>
+			<div className='background' />
+			{loggedIn ? <Main /> : <Login setLoggedIn={setLoggedIn} />}
 		</div>
 	)
 }

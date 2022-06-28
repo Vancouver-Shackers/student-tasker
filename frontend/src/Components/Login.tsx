@@ -14,7 +14,10 @@ export const Login = (props: {
 		<div className='loginParent'>
 			<div className='loginChild mainBG'>
 				<h2 className='headerMid centerText'>Choose a login option</h2>
-				<button className='button ascend secondaryBG'>
+				<button
+					className='button ascend secondaryBG'
+					onClick={() => fetchData()}
+				>
 					{' '}
 					Connect student account{' '}
 				</button>

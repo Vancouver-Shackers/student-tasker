@@ -25,9 +25,9 @@ class Graph:
 
 
     def get_assignments(self):
-        endpoint = '/education/me/assignments'
+        # endpoint = '/education/me/assignments'
+        endpoint = '/me/todo/lists'
         
         request_url = f'{endpoint}'
-
         assignment_response = self.user_client.get(request_url)
         return assignment_response.json()
