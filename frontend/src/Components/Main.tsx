@@ -9,11 +9,32 @@ export const Main = () => {
   const [needsUpdate, setNeedsUpdate] = useState(false);
 
   useEffect(() => {
+    let storedCategories = localStorage.getItem("categories");
+    if (!storedCategories) {
+      localStorage.setItem(
+        "categories",
+        JSON.stringify({ categories: categories })
+      );
+    } else {
+      setCategories(JSON.parse(storedCategories)["categories"]);
+      setNeedsUpdate(true);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem(
+      "categories",
+      JSON.stringify({ categories: categories })
+    );
+  }, [categories]);
+
+  useEffect(() => {
     // UPDATES FUNCTIONS FOR ALL COMPONENTS SO THAT THE STATE IS CURRENT
     if (needsUpdate) {
       setNeedsUpdate(false);
-      for (let i = 0; i < categories.length; i++) {
-        let category = categories[i];
+      let newCategories = [...categories];
+      for (let i = 0; i < newCategories.length; i++) {
+        let category = newCategories[i];
 
         category.categoryIndex = i; // doesnt even matter
 
@@ -46,6 +67,7 @@ export const Main = () => {
           };
         }
       }
+      setCategories(newCategories);
     }
   }, [needsUpdate]);
 

@@ -126,7 +126,11 @@ body,
   box-shadow: rgba(0, 0, 0, 0.4) 0 10px 80px 0;
   border-radius: 6px;
   color: white;
-  max-height: 100%;
+
+  max-height: calc(
+    100vh - 60px
+  ); /* makes scrollable, max height is same top and bottom margin (30px) */
+
   overflow-y: auto;
   position: relative;
   width: 250px;
@@ -168,7 +172,7 @@ body,
   border-radius: 6px;
   cursor: pointer;
   user-select: none;
-  margin: 10px 0;
+  margin: 10px 0px;
 }
 
 .taskTopper {
