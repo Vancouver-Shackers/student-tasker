@@ -11,9 +11,21 @@ export const Login = (props: {
 	}
 
 	return (
-		<div>
-			<button onClick={() => fetchData()}>Connect Student Account</button>
-			<button onClick={() => props.setLoggedIn(true)}>Continue as Guest</button>
+		<div className='loginParent'>
+			<div className='loginChild mainBG'>
+				<h2 className='headerMid centerText'>Choose a login option</h2>
+				<button className='button ascend secondaryBG'>
+					{' '}
+					Connect student account{' '}
+				</button>
+				<button
+					className='button ascend secondaryBG'
+					onClick={() => props.setLoggedIn(true)}
+				>
+					{' '}
+					Continue as guest{' '}
+				</button>
+			</div>
 		</div>
 	)
 }
