@@ -17,13 +17,11 @@ export interface CategoryProps {
 const Category = (props: CategoryProps) => {
   return (
     <div className="category">
-      <button
-        className="categoryDeleteButton"
-        onClick={props.handleDeleteCategory}
-      >
-        x
-      </button>
-      <ContentEditable
+      <div className="categoryTopper">
+      <span className="material-icons-outlined redButton" onClick={props.handleDeleteCategory}>
+cancel
+</span>
+<ContentEditable
         className="categoryHeader headerMid"
         innerRef={createRef()}
         html={props.name}
@@ -34,6 +32,7 @@ const Category = (props: CategoryProps) => {
         }}
         tagName="h1"
       />
+      </div>
 
       <div className="categoryContent">
         <button

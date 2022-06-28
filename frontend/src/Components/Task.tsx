@@ -16,7 +16,10 @@ const Task = (props: TaskProps) => {
   return (
     <div className="task ascend" tabIndex={0}>
       <div className="taskTopper">
-        <div
+      <span className="material-icons-outlined redButton headerMid" onClick={props.handleDeleteTask}>
+cancel
+</span>
+<div
           className={`taskColor`}
           style={{
             backgroundColor: props.color,
@@ -36,9 +39,6 @@ const Task = (props: TaskProps) => {
           tagName="h2"
           className="taskHeader"
         />
-        <button className="taskDeleteButton" onClick={props.handleDeleteTask}>
-          x
-        </button>
       </div>
       <ContentEditable
         placeholder="Description"
@@ -52,7 +52,7 @@ const Task = (props: TaskProps) => {
             description: e.target.innerText,
           });
         }}
-        tagName="pre" // includes linebreaks
+        tagName="p" // includes linebreaks
         className="taskDescription"
       />
     </div>
