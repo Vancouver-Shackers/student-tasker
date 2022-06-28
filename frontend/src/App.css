@@ -269,6 +269,20 @@ body,
   top: -3px;
 }
 
+.taskDeleteButton {
+  background: #424242;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.categoryDeleteButton {
+  background: #333333;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
 /* [contenteditable='true']:empty:before {
 	content: attr(placeholder);
 	display: block;

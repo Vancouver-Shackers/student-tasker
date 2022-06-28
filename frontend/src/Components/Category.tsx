@@ -9,12 +9,20 @@ export interface CategoryProps {
   addTask: (task: TaskProps) => void;
   handleChangeTask: (taskIndex: number, newTask: TaskProps) => void;
   handleChangeCategory: (newCategory: string) => void;
+  handleDeleteTask: (taskIndex: number) => void;
+  handleDeleteCategory: () => void;
   categoryIndex: number;
 }
 
 const Category = (props: CategoryProps) => {
   return (
     <div className="category">
+      <button
+        className="categoryDeleteButton"
+        onClick={props.handleDeleteCategory}
+      >
+        x
+      </button>
       <ContentEditable
         className="categoryHeader headerMid"
         innerRef={createRef()}
@@ -38,8 +46,11 @@ const Category = (props: CategoryProps) => {
               color: `rgb(${Math.floor(Math.random() * 255)}, ${Math.floor(
                 Math.random() * 255
               )}, ${Math.floor(Math.random() * 255)})`,
-              onChangeTask: (task) => {
+              handleChangeTask: (task) => {
                 props.handleChangeTask(0, task);
+              },
+              handleDeleteTask: () => {
+                props.handleDeleteTask(0);
               },
             });
           }}

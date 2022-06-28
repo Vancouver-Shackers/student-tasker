@@ -29,9 +29,20 @@ export const Main = () => {
           handleChangeCategory(i, newCategory);
         };
 
+        category.handleDeleteTask = (taskIndex) => {
+          handleDeleteTask(i, taskIndex);
+        };
+
+        category.handleDeleteCategory = () => {
+          handleDeleteCategory(i);
+        };
+
         for (let j = 0; j < category.tasks.length; j++) {
-          category.tasks[j].onChangeTask = (task: TaskProps) => {
+          category.tasks[j].handleChangeTask = (task: TaskProps) => {
             category.handleChangeTask(j, task);
+          };
+          category.tasks[j].handleDeleteTask = () => {
+            category.handleDeleteTask(j);
           };
         }
       }
@@ -63,6 +74,12 @@ export const Main = () => {
         handleChangeCategory: (newName) => {
           handleChangeCategory(categories.length - 1, newName);
         },
+        handleDeleteTask: (taskIndex) => {
+          handleDeleteTask(categories.length - 1, taskIndex);
+        },
+        handleDeleteCategory: () => {
+          handleDeleteCategory(categories.length - 1);
+        },
         categoryIndex: categories.length,
       },
     ]);
@@ -90,6 +107,20 @@ export const Main = () => {
       targetCategory.tasks[taskIndex] = newTask;
       setCategories(newCategories);
     }
+    setNeedsUpdate(true);
+  };
+
+  const handleDeleteTask = (categoryIndex: number, taskIndex: number) => {
+    let newCategories = [...categories];
+    newCategories[categoryIndex].tasks.splice(taskIndex, 1);
+    setCategories(newCategories);
+    setNeedsUpdate(true);
+  };
+
+  const handleDeleteCategory = (categoryIndex: number) => {
+    let newCategories = [...categories];
+    newCategories.splice(categoryIndex, 1);
+    setCategories(newCategories);
     setNeedsUpdate(true);
   };
 
