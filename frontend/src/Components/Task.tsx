@@ -16,10 +16,13 @@ const Task = (props: TaskProps) => {
   return (
     <div className="task ascend" tabIndex={0}>
       <div className="taskTopper">
-      <span className="material-icons-outlined redButton headerMid" onClick={props.handleDeleteTask}>
-cancel
-</span>
-<div
+        <span
+          className="material-icons-outlined redButton headerMid"
+          onClick={props.handleDeleteTask}
+        >
+          x
+        </span>
+        <div
           className={`taskColor`}
           style={{
             backgroundColor: props.color,

@@ -18,20 +18,23 @@ const Category = (props: CategoryProps) => {
   return (
     <div className="category">
       <div className="categoryTopper">
-      <span className="material-icons-outlined redButton" onClick={props.handleDeleteCategory}>
-cancel
-</span>
-<ContentEditable
-        className="categoryHeader headerMid"
-        innerRef={createRef()}
-        html={props.name}
-        disabled={false}
-        onChange={(e) => {}}
-        onBlur={(e) => {
-          props.handleChangeCategory(e.target.innerText);
-        }}
-        tagName="h1"
-      />
+        <span
+          className="material-icons-outlined redButton"
+          onClick={props.handleDeleteCategory}
+        >
+          x
+        </span>
+        <ContentEditable
+          className="categoryHeader headerMid"
+          innerRef={createRef()}
+          html={props.name}
+          disabled={false}
+          onChange={(e) => {}}
+          onBlur={(e) => {
+            props.handleChangeCategory(e.target.innerText);
+          }}
+          tagName="h1"
+        />
       </div>
 
       <div className="categoryContent">
