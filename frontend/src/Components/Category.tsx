@@ -22,7 +22,7 @@ const Category = (props: CategoryProps) => {
           className="material-icons-outlined redButton"
           onClick={props.handleDeleteCategory}
         >
-          x
+          cancel
         </span>
         <ContentEditable
           className="categoryHeader headerMid"

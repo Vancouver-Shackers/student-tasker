@@ -20,7 +20,7 @@ const Task = (props: TaskProps) => {
           className="material-icons-outlined redButton headerMid"
           onClick={props.handleDeleteTask}
         >
-          x
+          cancel
         </span>
         <div
           className={`taskColor`}
