@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const Login = (props: {
+export const LoginPage = (props: {
   setLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const fetchData = async () => {
@@ -46,4 +46,4 @@ export const Login = (props: {
   );
 };
 
-export default Login;
+export default LoginPage;

@@ -3,7 +3,7 @@ import Category, { CategoryProps } from "./Category";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import { TaskProps } from "./Task";
 
-export const Main = () => {
+export const TaskManagerPage = () => {
   const [categories, setCategories] = useState<CategoryProps[]>([]);
 
   const [needsUpdate, setNeedsUpdate] = useState(false);
@@ -225,4 +225,4 @@ export const Main = () => {
   );
 };
 
-export default Main;
+export default TaskManagerPage;
